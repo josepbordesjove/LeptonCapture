@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="LeptonCapture" Database="">
+  <Project Name="Lepton_SDK" Path="Lepton_SDK/Lepton_SDK.project" Active="No"/>
+  <Project Name="LeptonCapture" Path="LeptonCapture/LeptonCapture.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Project Name="Lepton_SDK" ConfigName="Debug"/>
+      <Project Name="LeptonCapture" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Project Name="Lepton_SDK" ConfigName="Release"/>
+      <Project Name="LeptonCapture" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
