@@ -6,7 +6,8 @@
 #include "functions.h"
 #include "helpers.h"
 #include "images.h"
-#include "SPI.h"
+
+const char *device = "/dev/spidev0.1";
 
 int main(int argc, char *argv[]){
     int ret = 0;
@@ -16,8 +17,21 @@ int main(int argc, char *argv[]){
 	
 	SPIconnection.bits = 8;
 	SPIconnection.speed = 16000000;
+    
+    fd = open(device, O_RDWR);
+    if (fd < 0){
+        pabort("can't open device");
+    }
 
-    ret = startConnection(&fd, &SPIconnection);
+    ret = ioctl(fd, SPI_IOC_WR_MODE, &SPIconnection.mode);
+    ret = ioctl(fd, SPI_IOC_RD_MODE, &SPIconnection.mode);
+    ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &SPIconnection.bits);
+    ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &SPIconnection.bits);
+    ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &SPIconnection.speed);
+    ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &SPIconnection.speed);
+    if (ret == -1){
+        pabort("Something was wrong during the SPI Connection");
+    }
 
     printf("spi mode: %d\n", SPIconnection.mode);
     printf("bits per word: %d\n", SPIconnection.bits);

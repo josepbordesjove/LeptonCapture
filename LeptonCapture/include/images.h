@@ -12,13 +12,20 @@
 #include <linux/i2c-dev.h>
 #include <errno.h>
 
-#include "helpers.h" 
+#include "helpers.h"
 
 typedef struct {
 	float auxTemperature;
 	float fpaTemperature;
 	unsigned int pixel[60][80]; 
 }tImage;
+
+typedef struct {
+	uint8_t bits;
+	uint32_t speed;
+	uint8_t mode;
+	uint16_t delay;
+}tConnection;
 
 void initImage(tImage *image);
 int transferImage(int fd, tImage *image, tConnection SPIconnection);
