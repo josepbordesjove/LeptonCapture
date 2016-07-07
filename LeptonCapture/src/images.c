@@ -5,15 +5,12 @@
 #include <getopt.h>
 #include <fcntl.h>
 
-#include "functions.h"
-#include "helpers.h"
 #include "images.h"
-#include "menu.h"
+#include "helpers.h"
+#include "functions.h"
 
 #define VOSPI_FRAME_SIZE (164)
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
-
-const char *device = "/dev/spidev0.1";
 
 void initImage(tImage *image) {
 	int i;
@@ -53,6 +50,8 @@ void saveImage(tImage image) {
 	
 	fprintf(f,"Aux Temperature:\t%.2f \n", image.auxTemperature);
 	fprintf(f,"Fpa Temperature:\t%.2f \n", image.fpaTemperature);
+	fprintf(f,"Min RAW Value:\t%.2d \n", image.min);
+	fprintf(f,"Max RAW Value:\t%.2d \n", image.max);
     
     for(i=0;i<60;i++) {
         for(j=0;j<80;j++) {
@@ -71,7 +70,6 @@ unsigned int findMin(tImage image) {
 	int i;
     int j;
 	
-	printf("Calculate the min\n");
     for(i=0;i<60;i++) {
         for(j=0;j<80;j++) {
             if (image.pixel[i][j] < minval) {
@@ -79,8 +77,7 @@ unsigned int findMin(tImage image) {
             }
         }
     }
-    printf("minval = %u\n",minval);
-	
+	printf("Min RAW Value: \t%d\n", minval);
 	return minval;
 }
 
@@ -89,7 +86,6 @@ unsigned int findMax(tImage image) {
 	    int i;
     int j;
 	
-	printf("Calculate the max\n");
     for(i=0;i<60;i++) {
         for(j=0;j<80;j++) {
             if (image.pixel[i][j] > maxval) {
@@ -97,8 +93,7 @@ unsigned int findMax(tImage image) {
             }
         }
     }
-    printf("maxval = %u\n",maxval);
-	
+	printf("Max RAW Value: \t%d\n", maxval);
 	return maxval;
 }
 
@@ -134,13 +129,15 @@ int transferImage(int fd, tImage *image, tConnection SPIconnection) {
     return frame_number;
 }
 
-void captureImage(tImage *image) {
+tImage captureImage() {
+	const char *device = "/dev/spidev0.1";
     int ret = 0;
     int fd;
-    tConnection SPIconnection;
-    
-    SPIconnection.bits = 8;
-    SPIconnection.speed = 16000000;
+	tImage image;
+	tConnection SPIconnection;
+	
+	SPIconnection.bits = 8;
+	SPIconnection.speed = 16000000;
     
     fd = open(device, O_RDWR);
     if (fd < 0){
@@ -157,16 +154,18 @@ void captureImage(tImage *image) {
         pabort("Something was wrong during the SPI Connection");
     }
 
-    printf("spi mode: %d\n", SPIconnection.mode);
-    printf("bits per word: %d\n", SPIconnection.bits);
-    printf("max speed: %d Hz (%d KHz)\n", SPIconnection.speed, SPIconnection.speed/1000);
-
-    while(transferImage(fd, &image, SPIconnection) != 59){}
+	while(transferImage(fd, &image, SPIconnection) != 59){}
     
-    image.auxTemperature = lepton_read_AuxTemperature();
-    image.fpaTemperature = lepton_read_FpaTemperature();
+	image.auxTemperature = lepton_read_AuxTemperature();
+	image.fpaTemperature = lepton_read_FpaTemperature();
+	image.min = findMin(image);
+	image.max = findMax(image);
 
     close(fd);
-    
 
+	saveImage(image);
+	
+	printf("\nImage captured and saved\n");
+	
+	return image;
 }

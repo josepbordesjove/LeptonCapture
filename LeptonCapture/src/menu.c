@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "menu.h"
 #include "functions.h"
 #include "helpers.h"
 #include "images.h"
-#include "menu.h"
 
 /* 
  * Function:    vwrMenu_mainMenu
@@ -13,22 +13,18 @@
  * Arguments:   ---
  * Returns:     The option the user selected.
  */
-char vwrMenu_mainMenu()
-{
-	int version;
+char mainMenu() {
 	char option;
 	
 	helpers_clearScreen();
 	
-	version = ops_getVersion();
+	printf("\nThis is a FLiR Lepton Application to capture and analize images\n");
+	printf("---------------------------------------------------------------\n\n");
+	printf("Lepton SDK: August 28, 2014\n");
 	
-	printf("\nWelcome to the UOC Race Viewer application!\n");
-	printf("\n------------------------------------\n\n");
-	printf("Library version: %d\n\n", version);
-	
-	printf("Please, select a menu option:\n\n");
-	printf("1. List all races \n");
-	printf("2. View subscribed races\n");
+	printf("Select an option:\n\n");
+	printf("1. Capture image \n");
+	printf("2. Options\n");
 	printf("\n");
 	printf("0. Exit\n\n");
 	

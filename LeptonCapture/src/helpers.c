@@ -1,17 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
-#include "functions.h"
 #include "helpers.h"
-#include "images.h"
-#include "menu.h"
 
-/*
- * Function:    pabort
- * Description: Used to abort the program execution
- * Arguments:   ---
- * Returns:     ---
- */
 void pabort(const char *s) {
     perror(s);
     abort();
@@ -23,8 +15,8 @@ void pabort(const char *s) {
  * Arguments:   ---
  * Returns:     ---
  */
-void helpers_clearScreen(){
-    system("clear");
+void helpers_clearScreen() {
+	system("clear");
 }
 
 /*
@@ -33,13 +25,14 @@ void helpers_clearScreen(){
  * Arguments:   ---
  * Returns:     The character pressed by the user
  */
-char helpers_getOption(){
-    char retValue;
+char helpers_getOption() {
+	
+	char retValue;
 
-    retValue = getchar();
-    fflush(stdin);
+	retValue = getchar();
+	fflush(stdin);
 
-    return retValue;
+	return retValue;
 }
 
 
@@ -50,11 +43,11 @@ char helpers_getOption(){
  * Returns:     ---
  */
 void helpers_pressAnyKey(){
-    printf("\nPress any key to continue.\n");
+	printf("\nPress any key to continue.\n");
 
-    getchar();
-    fflush(stdin);
-
+	getchar();
+	getchar();
+	fflush(stdin);
 }
 
 /*
@@ -65,19 +58,20 @@ void helpers_pressAnyKey(){
  * Returns:     ---
  */
 void helpers_scanText(char * property, int maxValue) {
-    int i;
-    char c;
-    
-    i = 0;
-    c = getchar();
-    while ((i < maxValue - 1) && (c != '\n')) {
-        // Concatenate the characters until 'Enter' or string maximum length
-        property[i] = c;
-        i++;
-        c = getchar();
-    }
-    
-    fflush(stdin);
+	int i;
+	char c;
+	
+	i = 0;
+	c = getchar();
+	while ((i < maxValue - 1) && (c != '\n'))
+	{
+		// Concatenate the characters until 'Enter' or string maximum length
+		property[i] = c;
+		i++;
+		c = getchar();
+	}
+	
+	fflush(stdin);
 }
 
 /*
@@ -87,6 +81,8 @@ void helpers_scanText(char * property, int maxValue) {
  * Returns:     ---
  */
 void helpers_scanInt(int * retValue) {
-    scanf("%d", retValue);
-    fflush(stdin);
+
+	scanf("%d", retValue);
+	fflush(stdin);
 }
+

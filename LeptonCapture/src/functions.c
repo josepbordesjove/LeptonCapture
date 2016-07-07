@@ -2,10 +2,9 @@
 #include "LEPTON_SYS.h"
 #include "LEPTON_Types.h"
 
-#include "functions.h"
-#include "helpers.h"
 #include "images.h"
-#include "menu.h"
+#include "helpers.h"
+#include "functions.h"
 
 bool _connected;
 
@@ -39,7 +38,7 @@ float lepton_read_AuxTemperature() {
 	LEP_GetSysAuxTemperatureKelvin(&_port, &auxTemperaturePtr);
 	AUXTemperature = (int)auxTemperaturePtr/100 - 273.15;
 	
-	printf("AUX Temperature: %.2f\n", AUXTemperature);
+	printf("AUX Temperature: %.2f\t\n", AUXTemperature);
 	
 	return AUXTemperature;
 }
@@ -57,7 +56,7 @@ float lepton_read_FpaTemperature() {
 	
 	FPATemperature = (int)fpaTemperaturePtr/100 - 273.15;
 	
-	printf("FPA Temperature: %.2f\n", FPATemperature);
+	printf("FPA Temperature: %.2f\t\n", FPATemperature);
 	
 	return FPATemperature;
 }

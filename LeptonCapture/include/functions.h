@@ -2,10 +2,6 @@
 #include "LEPTON_SYS.h"
 #include "LEPTON_Types.h"
 
-#include "helpers.h"
-#include "images.h"
-#include "menu.h"
-
 int lepton_connect();
 void lepton_perform_ffc();
 float lepton_read_AuxTemperature();

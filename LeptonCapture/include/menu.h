@@ -1,4 +1,5 @@
-#include "functions.h"
-#include "helpers.h"
-#include "images.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+char mainMenu();

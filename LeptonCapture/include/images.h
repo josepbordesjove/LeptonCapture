@@ -12,13 +12,13 @@
 #include <linux/i2c-dev.h>
 #include <errno.h>
 
-#include "functions.h"
 #include "helpers.h"
-#include "menu.h"
 
 typedef struct {
 	float auxTemperature;
 	float fpaTemperature;
+	unsigned int min;
+	unsigned int max;
 	unsigned int pixel[60][80]; 
 }tImage;
 
@@ -31,7 +31,7 @@ typedef struct {
 
 void initImage(tImage *image);
 int transferImage(int fd, tImage *image, tConnection SPIconnection);
-void captureImage(tImage *image);
+tImage captureImage();
 void saveImage(tImage image);
 unsigned int findMin(tImage image);
 unsigned int findMax(tImage image);

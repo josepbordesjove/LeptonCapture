@@ -8,13 +8,30 @@
 #include "images.h"
 #include "menu.h"
 
-const char *device = "/dev/spidev0.1";
-
 int main(int argc, char *argv[]){
-    tImage image;
-    
-    captureImage(&image)
-    saveImage(image);
+	tImage image;
+	char option;
+	
+	initImage(&image);
+
+	option = mainMenu();
+	
+	while (option != '0') {
+		if (option == '1') {
+			helpers_clearScreen();
+			image = captureImage();
+			helpers_pressAnyKey();
+		}else if (option == '2') {
+			helpers_clearScreen();
+			printf("Selected option 3\n");
+			helpers_pressAnyKey();
+		}else if (option == '3') {
+			helpers_clearScreen();
+			printf("Selected option 3\n");
+			helpers_pressAnyKey();
+		}
+		option = mainMenu();
+	}
 
     return 0;
 }
