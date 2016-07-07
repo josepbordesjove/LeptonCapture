@@ -31,6 +31,7 @@ typedef struct {
 
 void initImage(tImage *image);
 int transferImage(int fd, tImage *image, tConnection SPIconnection);
+void captureImage(tImage *image);
 void saveImage(tImage image);
 unsigned int findMin(tImage image);
 unsigned int findMax(tImage image);
