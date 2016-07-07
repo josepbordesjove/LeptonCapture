@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=LeptonCapture
 ConfigurationName      :=Debug
-WorkspacePath          := "/home/pi/Desktop/LeptonCapture"
-ProjectPath            := "/home/pi/Desktop/LeptonCapture/LeptonCapture"
+WorkspacePath          := "/home/pi/Desktop/git/LeptonCapture"
+ProjectPath            := "/home/pi/Desktop/git/LeptonCapture/LeptonCapture"
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=
-Date                   :=07/04/16
+Date                   :=07/07/16
 CodeLitePath           :="/home/pi/.codelite"
 LinkerName             :=/usr/bin/g++ 
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/src_main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IntermediateDirectory)/src_functions.c$(ObjectSuffix) $(IntermediateDirectory)/src_images.c$(ObjectSuffix) $(IntermediateDirectory)/src_helpers.c$(ObjectSuffix) 
 
 
 
@@ -88,12 +88,36 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/src_main.c$(ObjectSuffix): src/main.c $(IntermediateDirectory)/src_main.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/pi/Desktop/LeptonCapture/LeptonCapture/src/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "/home/pi/Desktop/git/LeptonCapture/LeptonCapture/src/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/src_main.c$(DependSuffix): src/main.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_main.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_main.c$(DependSuffix) -MM "src/main.c"
 
 $(IntermediateDirectory)/src_main.c$(PreprocessSuffix): src/main.c
 	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_main.c$(PreprocessSuffix) "src/main.c"
+
+$(IntermediateDirectory)/src_functions.c$(ObjectSuffix): src/functions.c $(IntermediateDirectory)/src_functions.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/pi/Desktop/git/LeptonCapture/LeptonCapture/src/functions.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_functions.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_functions.c$(DependSuffix): src/functions.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_functions.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_functions.c$(DependSuffix) -MM "src/functions.c"
+
+$(IntermediateDirectory)/src_functions.c$(PreprocessSuffix): src/functions.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_functions.c$(PreprocessSuffix) "src/functions.c"
+
+$(IntermediateDirectory)/src_images.c$(ObjectSuffix): src/images.c $(IntermediateDirectory)/src_images.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/pi/Desktop/git/LeptonCapture/LeptonCapture/src/images.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_images.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_images.c$(DependSuffix): src/images.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_images.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_images.c$(DependSuffix) -MM "src/images.c"
+
+$(IntermediateDirectory)/src_images.c$(PreprocessSuffix): src/images.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_images.c$(PreprocessSuffix) "src/images.c"
+
+$(IntermediateDirectory)/src_helpers.c$(ObjectSuffix): src/helpers.c $(IntermediateDirectory)/src_helpers.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/pi/Desktop/git/LeptonCapture/LeptonCapture/src/helpers.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_helpers.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_helpers.c$(DependSuffix): src/helpers.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_helpers.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_helpers.c$(DependSuffix) -MM "src/helpers.c"
+
+$(IntermediateDirectory)/src_helpers.c$(PreprocessSuffix): src/helpers.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_helpers.c$(PreprocessSuffix) "src/helpers.c"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
