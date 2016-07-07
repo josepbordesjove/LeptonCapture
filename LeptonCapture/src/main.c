@@ -6,6 +6,7 @@
 #include "functions.h"
 #include "helpers.h"
 #include "images.h"
+#include "menu.h"
 
 const char *device = "/dev/spidev0.1";
 
@@ -45,6 +46,8 @@ int main(int argc, char *argv[]){
     close(fd);
 	
 	saveImage(image);
+    
+    vwrMain_displayMenu();
 
     return ret;
 }

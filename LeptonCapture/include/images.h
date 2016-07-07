@@ -12,7 +12,9 @@
 #include <linux/i2c-dev.h>
 #include <errno.h>
 
+#include "functions.h"
 #include "helpers.h"
+#include "menu.h"
 
 typedef struct {
 	float auxTemperature;

@@ -2,9 +2,10 @@
 #include "LEPTON_SYS.h"
 #include "LEPTON_Types.h"
 
-#include "images.h"
-#include "helpers.h"
 #include "functions.h"
+#include "helpers.h"
+#include "images.h"
+#include "menu.h"
 
 bool _connected;
 

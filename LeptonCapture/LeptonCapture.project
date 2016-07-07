@@ -7,11 +7,13 @@
     <File Name="src/functions.c"/>
     <File Name="src/images.c"/>
     <File Name="src/helpers.c"/>
+    <File Name="src/menu.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/functions.h"/>
     <File Name="include/images.h"/>
     <File Name="include/helpers.h"/>
+    <File Name="include/menu.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

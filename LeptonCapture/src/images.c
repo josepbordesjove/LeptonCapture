@@ -5,9 +5,10 @@
 #include <getopt.h>
 #include <fcntl.h>
 
-#include "images.h"
-#include "helpers.h"
 #include "functions.h"
+#include "helpers.h"
+#include "images.h"
+#include "menu.h"
 
 #define VOSPI_FRAME_SIZE (164)
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))

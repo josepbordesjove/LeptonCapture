@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "functions.h"
 #include "helpers.h"
+#include "images.h"
+#include "menu.h"
 
 /*
  * Function:    pabort
