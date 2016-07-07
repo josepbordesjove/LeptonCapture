@@ -8,8 +8,8 @@
 #include "images.h"
 
 /* 
- * Function:    vwrMenu_mainMenu
- * Description: Displays the Race Viewer main menu with the available operations
+ * Function:    mainMenu
+ * Description: Displays the FLiR Capture Application options
  * Arguments:   ---
  * Returns:     The option the user selected.
  */
@@ -24,7 +24,8 @@ char mainMenu() {
 	
 	printf("Select an option:\n\n");
 	printf("1. Capture image \n");
-	printf("2. Options\n");
+	printf("2. Perform FFC\n");
+	printf("3. Options\n");
 	printf("\n");
 	printf("0. Exit\n\n");
 	

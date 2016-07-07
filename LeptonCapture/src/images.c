@@ -9,9 +9,19 @@
 #include "helpers.h"
 #include "functions.h"
 
+#define IMAGES_FILE "../Images/IMG_%.4d.txt"
+#define LOGS_FILE "../Logs/imageLog.txt"
+
+
 #define VOSPI_FRAME_SIZE (164)
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
+/*
+ * Function:    initImage
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 void initImage(tImage *image) {
 	int i;
 	int j;
@@ -24,8 +34,16 @@ void initImage(tImage *image) {
 	
 	image->auxTemperature = 0;
 	image->fpaTemperature = 0;
+	image->min = 0;
+	image->max = 0;
 }
 
+/*
+ * Function:    saveImage
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 void saveImage(tImage image) {
     int i;
     int j;
@@ -33,7 +51,7 @@ void saveImage(tImage image) {
     int image_index = 0;
 
     do {
-        sprintf(image_name, "../Images/IMG_%.4d.txt", image_index);
+        sprintf(image_name, IMAGES_FILE, image_index);
         image_index += 1;
         if (image_index > 9999) {
             image_index = 0;
@@ -65,6 +83,12 @@ void saveImage(tImage image) {
     fclose(f);
 }
 
+/*
+ * Function:    findMin
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 unsigned int findMin(tImage image) {
 	unsigned int minval = 20000;
 	int i;
@@ -81,6 +105,12 @@ unsigned int findMin(tImage image) {
 	return minval;
 }
 
+/*
+ * Function:    findMax
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 unsigned int findMax(tImage image) {
 	unsigned int maxval = 0;
 	    int i;
@@ -97,6 +127,12 @@ unsigned int findMax(tImage image) {
 	return maxval;
 }
 
+/*
+ * Function:    transferImage
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 int transferImage(int fd, tImage *image, tConnection SPIconnection) {
     int ret;
     int i;
@@ -129,6 +165,12 @@ int transferImage(int fd, tImage *image, tConnection SPIconnection) {
     return frame_number;
 }
 
+/*
+ * Function:    captureImage
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
 tImage captureImage() {
 	const char *device = "/dev/spidev0.1";
     int ret = 0;
@@ -164,8 +206,38 @@ tImage captureImage() {
     close(fd);
 
 	saveImage(image);
+	saveLog(image);
 	
 	printf("\nImage captured and saved\n");
 	
 	return image;
+}
+
+/*
+ * Function:    saveLog
+ * Description: ---
+ * Arguments:   ---
+ * Returns:     ---
+ */
+void saveLog(tImage image){
+    //Create a variable that will contain the local adress to the file
+    FILE *outputFile;
+	char animalID[15] = "NNNNNNNNNNNNNNN";
+
+    //Open the file in write mode
+    outputFile = fopen(LOGS_FILE, "a");
+    
+    //If the variable output is null , it means the file could not has been created or opened, so finish the action 
+    if (outputFile == NULL) {
+        return;
+    }
+    
+	//Save the data in the specified format
+	fprintf(outputFile, "${<%s><%05d><%04.0f>}\n", 	animalID,
+													image.max,
+													image.fpaTemperature*100);
+	
+    
+    //Close the file
+    fclose(outputFile);
 }

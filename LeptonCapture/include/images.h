@@ -7,9 +7,7 @@
 #include <sys/ioctl.h>
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
-#include <limits.h>
 #include <fcntl.h>
-#include <linux/i2c-dev.h>
 #include <errno.h>
 
 #include "helpers.h"
@@ -29,9 +27,23 @@ typedef struct {
 	uint16_t delay;
 }tConnection;
 
+//Initialize a var of type tImage, putting all their values at 0
 void initImage(tImage *image);
+
+//Transfers one frame from the Lepton and stores it into an image
 int transferImage(int fd, tImage *image, tConnection SPIconnection);
+
+//This function is used to capture the images
 tImage captureImage();
+
+//This function is used to save the images into a .txt file
 void saveImage(tImage image);
+
+//Find the minimum RAW value into an image
 unsigned int findMin(tImage image);
+
+//Finds the maximum RAW value into an image
 unsigned int findMax(tImage image);
+
+//Save the log of the captured image
+void saveLog(tImage image);
