@@ -20,13 +20,6 @@ typedef struct {
 	unsigned int pixel[60][80]; 
 }tImage;
 
-typedef struct {
-	uint8_t bits;
-	uint32_t speed;
-	uint8_t mode;
-	uint16_t delay;
-}tConnection;
-
 void initImage(tImage *image);
 int transferImage(int fd, tImage *image, tConnection SPIconnection);
 void saveImage(tImage image);
