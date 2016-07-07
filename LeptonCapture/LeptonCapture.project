@@ -4,8 +4,13 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="src/main.c"/>
+    <File Name="src/helpers.c"/>
+    <File Name="src/functions.c"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="include"/>
+  <VirtualDirectory Name="include">
+    <File Name="include/helpers.h"/>
+    <File Name="include/functions.h"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">

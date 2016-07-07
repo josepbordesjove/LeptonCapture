@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="/home/pi/Desktop/LeptonCapture/LeptonCapture.workspace">
+<Session Name="C:\Users\Josep\Desktop\LeptonCapture\LeptonCapture.workspace">
   <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="/home/pi/Desktop/LeptonCapture/LeptonCapture.workspace" Name="m_workspaceName"/>
+  <wxString Value="C:\Users\Josep\Desktop\LeptonCapture\LeptonCapture.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/pi/Desktop/LeptonCapture/LeptonCapture/src/main.c" Name="FileName"/>
-      <int Value="16" Name="FirstVisibleLine"/>
-      <int Value="14" Name="CurrentLine"/>
+      <wxString Value="C:\Users\Josep\Desktop\LeptonCapture\LeptonCapture\src\main.c" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
