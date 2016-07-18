@@ -1,1 +1,0 @@
-./Debug/src_LEPTON_AGC.c.o ./Debug/src_LEPTON_I2C_Protocol.c.o ./Debug/src_LEPTON_I2C_Service.c.o ./Debug/src_LEPTON_SDK.c.o ./Debug/src_LEPTON_SYS.c.o ./Debug/src_LEPTON_VID.c.o ./Debug/src_crc16fast.c.o ./Debug/src_raspi_I2C.c.o
